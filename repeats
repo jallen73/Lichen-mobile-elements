@@ -1,0 +1,8 @@
+
+# https://github.com/Dfam-consortium/TETools
+srun --partition=hotel --pty --nodes=1 --ntasks-per-node=1 -t 120:00:00 -A htl160 --qos=hotel --wait=0 --export=ALL /bin/bash
+module load singularitypro
+./dfam-tetools.sh --singularity
+BuildDatabase -name leno Lepraria_normandinoides_25x.fa
+nohup RepeatModeler -database bagi -threads 20 -LTRStruct >& bagi.run.out &
+RepeatMasker -pa 36 -gff -lib consensi.fa.classified refgenome.fa
